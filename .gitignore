@@ -1,0 +1,27 @@
+#Ignore All
+/*
+
+#Except:
+# Source Files
+!/src
+
+# Documentation
+!/LICENSE*
+!/README*
+!/TODO*
+
+# GitHub Files
+!.gitignore
+!.gitmodules
+!/*.md
+
+# Travis CI
+!.travis.yml
+
+# Gradle
+!*gradle*
+.gradle
+
+# Maven
+!pom.xml
+TODO.txt
