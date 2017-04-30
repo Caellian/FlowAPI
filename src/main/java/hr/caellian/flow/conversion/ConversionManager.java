@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ * Flow API, API for managing transfer of abstract data.
+ * Copyright (c) 2017 Tin Švagelj <tin.svagelj.email@gmail.com> a.k.a. Caellian
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 package hr.caellian.flow.conversion;
 
 import hr.caellian.flow.data.Pair;
@@ -14,8 +38,8 @@ import java.util.function.Function;
  * system prevents unintentional conversion between {@code Flux} types that
  * shouldn't work together.
  *
- * @param <T> {@link Converter converter} type subclass supported by {@link ConversionManager Conversion Manager}.
- *
+ * @param <T> {@link Converter Converter} type subclass supported by {@link
+ *            ConversionManager Conversion Manager}.
  * @author Caellian
  * @since 1.0.0
  */
@@ -47,12 +71,12 @@ public abstract class ConversionManager<T extends Converter> {
     /**
      * This method will register a power converter safely allowing you to
      * force it's registration and usage.
-     *
+     * <p>
      * There is no guarantee that implementation of this function will or can
      * respect {@code force} parameter.
      *
      * @param powerUnitConverter converter to register.
-     * @param force true to force registration.
+     * @param force              true to force registration.
      * @return {@code true} if converter wasn't previously registered and was
      * successfully registered, {@code false} otherwise.
      */
@@ -61,7 +85,7 @@ public abstract class ConversionManager<T extends Converter> {
 
     /**
      * @param from ID of input flux type.
-     * @param to ID of output flux type.
+     * @param to   ID of output flux type.
      * @return {@code true} if a direct conversion function for input and output
      * flux IDs is available, {@code false} otherwise.
      */
@@ -70,13 +94,13 @@ public abstract class ConversionManager<T extends Converter> {
     }
 
     /**
-     * @param from ID of input flux type.
-     * @param to ID of output flux type.
+     * @param from     ID of input flux type.
+     * @param to       ID of output flux type.
      * @param maxSteps number of steps to find indirect conversion function
      *                 within.
      * @return {@code true} if an indirect conversion function for input and
-     * output flux IDs is available within defined number of steps,
-     * {@code false} otherwise.
+     * output flux IDs is available within defined number of steps, {@code
+     * false} otherwise.
      */
     public boolean converterAvailable(String from, String to, int maxSteps) {
         return getConverter(from, to, maxSteps) != null;
@@ -84,7 +108,7 @@ public abstract class ConversionManager<T extends Converter> {
 
     /**
      * @param from ID of input flux type.
-     * @param to ID of output flux type.
+     * @param to   ID of output flux type.
      * @return direct converter form input to output flux type, {@code null}
      * otherwise.
      */
@@ -93,13 +117,13 @@ public abstract class ConversionManager<T extends Converter> {
     }
 
     /**
-     * @param from ID of input flux type.
-     * @param to ID of output flux type.
+     * @param from     ID of input flux type.
+     * @param to       ID of output flux type.
      * @param maxSteps number of steps to find indirect conversion function
      *                 within.
      * @return indirect converter if an indirect conversion function for input
-     * and output flux IDs is available within defined number of steps,
-     * {@code null} otherwise.
+     * and output flux IDs is available within defined number of steps, {@code
+     * null} otherwise.
      */
     public T getConverter(String from, String to, int maxSteps) {
         // Try to find direct converter to save time.
@@ -142,7 +166,8 @@ public abstract class ConversionManager<T extends Converter> {
         };
 
         // Perform search and construction of simplest conversion function.
-        // This will not return the most accurate conversion function, just the least complex one.
+        // This will not return the most accurate conversion function,
+        // just the least complex one.
         recursiveBFS.accept(new Object[]{from, null, 0});
 
         return lowest[0];

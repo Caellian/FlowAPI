@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ * Flow API, API for managing transfer of abstract data.
+ * Copyright (c) 2017 Tin Švagelj <tin.svagelj.email@gmail.com> a.k.a. Caellian
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 package hr.caellian.flow.data;
 
 import java.io.Externalizable;
@@ -7,20 +31,19 @@ import java.io.ObjectOutput;
 import java.util.function.Function;
 
 /**
- * @link Property is data wrapper which makes {@link Flux} data manipulation a
+ * Property is data wrapper which makes {@link Flux} data manipulation a
  * bit easier and predictable.
  * Custom implementations of {@link Property} can handle custom serialization
  * and deserialization or handle certain formats differently.
  *
  * @param <T> Type contained by {@link Property} object.
- *
  * @author Caellian
  * @author Strikingwolf
  * @since 1.0.0
  */
-public class Property<T> implements Externalizable {
+public class Property<T> implements Externalizable, Cloneable {
     /**
-     * ID of this propery.
+     * ID of this property.
      */
     protected String ID;
     /**
@@ -37,7 +60,8 @@ public class Property<T> implements Externalizable {
 
     /**
      * Default constructor.
-     * @param ID ID of this property.
+     *
+     * @param ID   ID of this property.
      * @param data data contained by this property.
      */
     public Property(String ID, T data) {
@@ -71,8 +95,8 @@ public class Property<T> implements Externalizable {
      * Set method replaces currently stored data with argument data.
      *
      * @param newData data to replace current data with.
-     * @return data previously stored in this {@link Property} or argument
-     * data if old data was null or equal to argument data.
+     * @return data previously stored in this {@link Property} or argument data
+     * if old data was null or equal to argument data.
      */
     public T set(T newData) {
         T old = this.data;
@@ -81,9 +105,10 @@ public class Property<T> implements Externalizable {
     }
 
     /**
-     * @param function {@link Function} to apply to data of this {@link Property}.
-     * @param <O> type of data stored in {@link Property} returned by argument
-     *           function.
+     * @param function {@link Function} to apply to data of this {@link
+     *                 Property}.
+     * @param <O>      type of data stored in {@link Property} returned by
+     *                 argument function.
      * @return {@link Property} produced by argument {@link Function} after
      * applying current data to it.
      */
@@ -92,8 +117,9 @@ public class Property<T> implements Externalizable {
     }
 
     /**
-     * @param function {@link Function} to apply to data of this {@link Property}.
-     * @param <O> type of data returned by argument {@link Function}.
+     * @param function {@link Function} to apply to data of this {@link
+     *                 Property}.
+     * @param <O>      type of data returned by argument {@link Function}.
      * @return new {@link Property} with identical ID as this {@link Property}
      * but with value returned by argument {@link Function} after applying
      * current data to it.
@@ -103,7 +129,8 @@ public class Property<T> implements Externalizable {
     }
 
     /**
-     * @param function {@link Function} to apply to data of this {@link Property}.
+     * @param function {@link Function} to apply to data of this {@link
+     *                 Property}.
      * @return this {@link Property} with it's data replaced by data produced by
      * applying current data to argument {@link Function}.
      */
@@ -120,6 +147,12 @@ public class Property<T> implements Externalizable {
         return "Property:{ID: '" + ID + "', data: " + data.toString() + "}";
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        super.clone();
+        return new Property<>(ID, data);
+    }
+
     /**
      * @param out object to store data to.
      * @throws IOException includes any I/O exceptions that may occur.
@@ -132,9 +165,10 @@ public class Property<T> implements Externalizable {
 
     /**
      * @param in object to read external data from.
-     * @throws IOException includes any I/O exceptions that may occur.
-     * @throws ClassNotFoundException if the class for an object being
-     * restored cannot be found.
+     * @throws IOException            includes any I/O exceptions that may
+     *                                occur.
+     * @throws ClassNotFoundException if the class for an object being restored
+     *                                cannot be found.
      */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
