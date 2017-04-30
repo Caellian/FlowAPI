@@ -5,17 +5,14 @@ across network and/or abstract coordinate system. <br>
 It contains a range of utilities which help with most common problems when it comes to handling big amounts of similar
 data.
 
-This project started out as a part of [Open Mod Loader](https://github.com/OpenModLoader/OpenModLoader) but OML
-sadly died out due to lack of support from Mojang to developers dependant on their code apart from MCP and FML teams
-who feel overly protective of their work. As I could at the time see this code can be used for many purposes much
-bigger than simple power/item/fluid pipes implemented by many Minecraft mods, I decided to continue working
-on it even though I will likely never use it myself because all of my project which could've benefited from this API
-are written in languages other than Java.
+This project started out as a Power API for [Open Mod Loader](https://github.com/OpenModLoader/OpenModLoader) but OML
+sadly died out. As I could at the time see this code can be used for many purposes much bigger than simple
+power/item/fluid pipes implemented by many Minecraft mods, I decided to continue working on it even though I will
+likely never use it myself because all of my project which could've benefited from this API are written in languages
+other than Java.
 
-At this point, this code is so flexible and abstract I can hardly concentrate to write thorough enough documentation
-for it which makes it a really long and painful process (but I'm slowly working on it). It can handle everything I can think
-of and I'm sure I haven't thought of everything (nor will in foreseeable future) so further development is highly
-dependant on the community.
+It can handle everything I can think of and I'm sure I haven't thought of everything (nor will in foreseeable future)
+so further development is highly dependant on the community.
 
 ## What does it do?
 
@@ -36,6 +33,12 @@ dependant on the community.
 As I never really got a chance to write something which could test this API properly it is uncertain. I can hardly see
 anything going wrong as the code is very generic and simple, but keep in mind it hasn't been tested enough to even be
 considered for a beta stage. Any input is appreciated.
+
+## Dependencies
+
+None. All code written here was written specifically for this API in way which would benefit it the most. There probably
+is some code I could've used from existing libraries (like code for pairs), but I feel it would make this API much
+bulkier than it has to be.
 
 ## License
 
