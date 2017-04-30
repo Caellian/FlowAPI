@@ -6,6 +6,7 @@
 !/src
 
 # Documentation
+!/docs
 !/LICENSE*
 !/README*
 !/TODO*
