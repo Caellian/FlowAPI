@@ -25,6 +25,7 @@
 package hr.caellian.flow.network.transfer;
 
 import hr.caellian.flow.conversion.Converter;
+import hr.caellian.flow.data.Flux;
 import hr.caellian.flow.data.FluxType;
 
 /**
@@ -44,14 +45,14 @@ public interface FluxCompatible {
     /**
      * @return preferred flux type of this object.
      */
-    FluxType<hr.caellian.flow.data.Flux> getPreferredType();
+    FluxType<Flux> getPreferredType();
 
     /**
      * @param type flux type to check for compatibility.
      * @return {@code true} if object supports argument flux type, {@code false}
      * otherwise.
      */
-    boolean supportsFluxType(FluxType<hr.caellian.flow.data.Flux> type);
+    boolean supportsFluxType(FluxType<Flux> type);
 
     /**
      * @param type flux type to return converter for.
@@ -59,5 +60,5 @@ public interface FluxCompatible {
      * @return converter from input flux type to preferred flux type if
      * available, {@code null} otherwise.
      */
-    <C extends Converter> C getConverter(FluxType<hr.caellian.flow.data.Flux> type);
+    <C extends Converter> C getConverter(FluxType<Flux> type);
 }

@@ -1,3 +1,3 @@
 #TODO List
 
-- [ ] Finish documentation
+- [X] Finish documentation
