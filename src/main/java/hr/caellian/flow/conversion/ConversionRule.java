@@ -24,6 +24,7 @@
 
 package hr.caellian.flow.conversion;
 
+import hr.caellian.flow.data.Flux;
 import hr.caellian.flow.data.FluxType;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ConversionRule {
      * {@link hr.caellian.flow.data.FluxType Flux Type} to which this
      * {@link ConversionRule Conversion Rule} belongs.
      */
-    private final FluxType<hr.caellian.flow.data.Flux> owner;
+    private final FluxType<Flux> owner;
 
     /**
      * Filtering mode to use for conversion permission selection.
@@ -52,20 +53,20 @@ public class ConversionRule {
      * List containing {@link hr.caellian.flow.data.FluxType Flux Types}
      * {@link #owner owner Flux Type} can be converted from.
      */
-    private ArrayList<FluxType<hr.caellian.flow.data.Flux>> from = new ArrayList<FluxType<hr.caellian.flow.data.Flux>>();
+    private ArrayList<FluxType<Flux>> from = new ArrayList<>();
 
     /**
      * List containing {@link hr.caellian.flow.data.FluxType Flux Types}
      * {@link #owner owner Flux Type} can be converted into.
      */
-    private ArrayList<FluxType<hr.caellian.flow.data.Flux>> to = new ArrayList<>();
+    private ArrayList<FluxType<Flux>> to = new ArrayList<>();
 
     /**
      * Default blacklist constructor.
      *
      * @param owner owner of this conversion management rule.
      */
-    public ConversionRule(FluxType<hr.caellian.flow.data.Flux> owner) {
+    public ConversionRule(FluxType<Flux> owner) {
         this(owner, FilterMode.BLACKLIST);
     }
 
@@ -75,7 +76,7 @@ public class ConversionRule {
      * @param owner      owner of this conversion management rule.
      * @param filterMode mode to filter entries with.
      */
-    public ConversionRule(FluxType<hr.caellian.flow.data.Flux> owner, FilterMode filterMode) {
+    public ConversionRule(FluxType<Flux> owner, FilterMode filterMode) {
         this.owner = owner;
         this.filterMode = filterMode;
     }
@@ -94,8 +95,9 @@ public class ConversionRule {
      * @return {@code true} if conversion is allowed by this conversion rule,
      * {@code false} otherwise.
      */
-    public boolean test(ConvertDirection convertDirection, FluxType<hr.caellian.flow.data.Flux> other) {
-        if ((from.contains(other) && convertDirection == ConvertDirection.FROM) || (to.contains(other) && convertDirection == ConvertDirection.INTO)) {
+    public boolean test(ConvertDirection convertDirection, FluxType<Flux> other) {
+        if ((from.contains(other) && convertDirection == ConvertDirection.FROM) ||
+                (to.contains(other) && convertDirection == ConvertDirection.INTO)) {
             return !filterMode.getDefaultResponse();
         }
         return filterMode.getDefaultResponse();
@@ -106,7 +108,7 @@ public class ConversionRule {
      * @return {@code true} if {@link #from "from"} exception was added
      * successfully.
      */
-    public boolean addFromException(FluxType<hr.caellian.flow.data.Flux> fluxType) {
+    public boolean addFromException(FluxType<Flux> fluxType) {
         return from.add(fluxType);
     }
 
@@ -116,7 +118,7 @@ public class ConversionRule {
      * @return {@code true} if {@link #from "from"} exception was removed
      * successfully.
      */
-    public boolean removeFromException(FluxType<hr.caellian.flow.data.Flux> fluxType) {
+    public boolean removeFromException(FluxType<Flux> fluxType) {
         return from.remove(fluxType);
     }
 
@@ -126,7 +128,7 @@ public class ConversionRule {
      * @return {@code true} if {@link #to "to"} exception was added
      * successfully.
      */
-    public boolean addToException(FluxType<hr.caellian.flow.data.Flux> fluxType) {
+    public boolean addToException(FluxType<Flux> fluxType) {
         return to.add(fluxType);
     }
 
@@ -136,7 +138,7 @@ public class ConversionRule {
      * @return {@code true} if {@link #to "to"} exception was removed
      * successfully.
      */
-    public boolean removeToException(FluxType<hr.caellian.flow.data.Flux> fluxType) {
+    public boolean removeToException(FluxType<Flux> fluxType) {
         return to.remove(fluxType);
     }
 

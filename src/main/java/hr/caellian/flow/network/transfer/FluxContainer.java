@@ -31,7 +31,7 @@ import java.io.Externalizable;
 import java.util.ArrayList;
 
 /**
- * Flux containers are object capable of containing Flux objects.
+ * Flux containers are objects capable of containing Flux objects.
  *
  * @param <B> Flux superclass supported by instances of this flux container.
  * @author Caellian

@@ -101,7 +101,7 @@ public class Property<T> implements Externalizable, Cloneable {
     public T set(T newData) {
         T old = this.data;
         this.data = newData;
-        return old != null && old != newData ? old : newData;
+        return old.equals(newData) ? old : newData;
     }
 
     /**

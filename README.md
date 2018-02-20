@@ -1,8 +1,10 @@
 # Flow API
 
 [![Build Status](https://travis-ci.org/Caellian/FlowAPI.svg?branch=master)](https://travis-ci.org/Caellian/FlowAPI)
-[ ![Download](https://api.bintray.com/packages/caellian/caellian/FlowAPI/images/download.svg) ](https://bintray.com/caellian/caellian/FlowAPI/_latestVersion)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3420e12cb3cb4f978c52989e6e6742c8)](https://www.codacy.com/app/Caellian/FlowAPI?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Caellian/FlowAPI&amp;utm_campaign=Badge_Grade)
+[![Download](https://api.bintray.com/packages/caellian/caellian/FlowAPI/images/download.svg)](https://bintray.com/caellian/caellian/FlowAPI/_latestVersion)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+
 
 Flow API is a Java API which is aimed at simplifying conversion of parametrised objects and transfer of said objects
 across network and/or abstract coordinate system. <br>
